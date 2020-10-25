@@ -18,7 +18,7 @@ wget -O "$HOME/lista-arq" ${REQUEST}/lista-bot > /dev/null 2>&1
 sleep 1s
 if [[ -e $HOME/lista-arq ]]; then
 for arqx in `cat $HOME/lista-arq`; do
-wget -O $HOME/$arqx ${REQUEST}/${arqx} > /dev/null 2>&1 && echo ${arqx} && [[ -e $HOME/$arqx ]] && veryfy_fun $arqx
+wget -O $HOME/$arqx ${REQUEST}/${arqx} > /dev/null 2>&1 && echo -e "\033[0;49;93mdescargando \033[0;49;32m${arqx}\033[0m" && [[ -e $HOME/$arqx ]] && veryfy_fun $arqx
 done
 fi
  rm $HOME/lista-arq
@@ -50,6 +50,7 @@ mensaje () {
  curl -s -X POST $URL -d chat_id=$ID -d text="$MENSAJE"
 }
 
+clear
 sleep 5
 if [[ $1 = start ]]; then
 	mensaje updating
