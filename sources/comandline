@@ -1,13 +1,12 @@
 #!/bin/bash
 
-cd_fun () {
-comands=$@
-result=$(cat "${comands}")
-
+cmd_fun () {
+cmd=$@
+result=$("${cmd[0]}" "${cmd[1]}")
 if [[ -z $result ]]; then
-
+bot_retorno+="$result"
 else
-
+bot_retorno+="comando ejecutado"
 fi
+msj_fun
 }
-
