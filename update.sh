@@ -22,7 +22,7 @@ wget -O $HOME/$arqx ${REQUEST}/${arqx} > /dev/null 2>&1 && echo ${arqx} && [[ -e
 done
 fi
  rm $HOME/lista-arq
- echo "${dirb}/vpsbot_conf.sh" > /usr/bin/VPSBot && chmod +x /usr/bin/VPSBot
+ echo "cd ${dirb}" > /usr/bin/VPSBot && echo './vpsbot_conf.sh' >> /usr/bin/VPSBot && chmod +x /usr/bin/VPSBot
 }
 
 veryfy_fun () {
