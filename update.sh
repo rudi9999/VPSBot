@@ -1,15 +1,17 @@
 #!/bin/bash
 
-dirb="/etc/ADM-db" && [[ ! -d ${dirb} ]] && mkdir ${dirb}
+dirb="/etc/VPSBot" && [[ ! -d ${dirb} ]] && mkdir ${dirb}
 dirs="${dirb}/sources" && [[ ! -d ${dirs} ]] && mkdir ${dirs}
-SCPresq="aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3J1ZGk5OTk5L1RlbGVCb3RHZW4vbWFzdGVyL3NvdXJjZXM="
+SCPresq="aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3J1ZGk5OTk5L1ZQU0JvdC9tYWluL3NvdXJjZXM="
 SUB_DOM='base64 -d'
 bar="\e[0;36m=====================================================\e[0m"
 
 update () {
 [[ -d ${dirs} ]] && rm -rf ${dirs}
-[[ -e ${dirb} ]] && rm ${dirb}/BotGen.sh
-[[ -e /bin/ShellBot.sh ]] && rm /bin/ShellBot.sh
+[[ -e ${dirb}/VPSBot.sh ]] && rm ${dirb}/VPSBot.sh
+[[ -e /usr/bin/VPSBot ]] && rm /usr/bin/VPSBot
+[[ -e ${dirb}/ShellBot.sh ]] && rm ${dirb}/ShellBot.sh
+[[ -e ${dirb}/vpsbot_conf.sh ]] && rm ${dirb}/vpsbot_conf.sh
 cd $HOME
 REQUEST=$(echo $SCPresq|$SUB_DOM)
 wget -O "$HOME/lista-arq" ${REQUEST}/lista-bot > /dev/null 2>&1
@@ -20,37 +22,27 @@ wget -O $HOME/$arqx ${REQUEST}/${arqx} > /dev/null 2>&1 && [[ -e $HOME/$arqx ]] 
 done
 fi
  rm $HOME/lista-arq
- start_bot
+ echo "${dirb}/VPSBot.sh" > /usr/bin/VPSBot
 }
 
 veryfy_fun () {
 dirs="${dirb}/sources" && [[ ! -d ${dirs} ]] && mkdir ${dirs}
-dirs="${dirb}/sources" && [[ ! -d ${dirs} ]] && mkdir ${dirs}
 unset ARQ
 case $1 in
-"BotGen.sh")ARQ="${dirb}";;
+"VPSBot.sh")ARQ="${dirb}";;
+"ShellBot.sh")ARQ="${dirb}";;
+"vpsbot_conf.sh")ARQ="${dirb}";;
 *)ARQ="${dirs}";;
 esac
 mv -f $HOME/$1 ${ARQ}/$1
 chmod +x ${ARQ}/$1
 }
 
-start_bot () {
-# [[ ! -e "${CIDdir}/token" ]] && echo "null" > ${CIDdir}/token
-unset PIDGEN
-PIDGEN=$(ps aux|grep -v grep|grep "BotGen.sh")
-if [[ ! $PIDGEN ]]; then
-screen -dmS teleBotGen ${CIDdir}/BotGen.sh
-else
-killall BotGen.sh
-fi
-}
-
 mensaje () {
- if [[ $1 = 1 ]]; then
-  MENSAJE="Actualizando BotGen"
- elif [[ $1 = 2 ]]; then
-  MENSAJE="BotGen Actualizado"
+ if [[ $1 = updating ]]; then
+  MENSAJE="Actualizando VPSBot..."
+ elif [[ $1 = updated ]]; then
+  MENSAJE="VPSBot Actualizado!"
  fi
  TOKEN="$(cat ${dirb}/token)"
  ID="$(cat ${dirb}/Admin-ID)"
@@ -59,11 +51,17 @@ mensaje () {
 }
 
 sleep 5
-mensaje 1
-sleep 1
-update
-sleep 1
-mensaje 2
-screen -dmS teleBotGen /etc/ADM-db/BotGen.sh
-sleep 2
+if [[ $1 = start ]]; then
+	killall VPSBot.sh &>/dev/null
+	mensaje updating
+	update
+	mensaje updated
+	screen -dmS VPSBot ${dirb}/VPSBot.sh
+else
+	update
+fi
+}
+
 rm update.sh
+exit
+
