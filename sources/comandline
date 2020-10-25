@@ -1,2 +1,13 @@
 #!/bin/bash
 
+cd_fun () {
+comands=$@
+result=$(cat "${comands}")
+
+if [[ -z $result ]]; then
+
+else
+
+fi
+}
+
