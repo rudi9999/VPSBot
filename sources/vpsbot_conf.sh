@@ -133,8 +133,7 @@ read foo
 
 update () {
 killall VPSBot.sh &>/dev/null
-wget https://raw.githubusercontent.com/rudi9999/VPSBOT/main/update.sh
-mv update.sh $HOME/
+[[ ! -e "$HOME/update.sh" ]] && wget -O $HOME/update.sh https://raw.githubusercontent.com/rudi9999/VPSBot/main/update.sh &> /dev/null
 chmod +x $HOME/update.sh
 screen -dmS $HOME/update.sh
 sleep 1
