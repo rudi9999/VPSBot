@@ -22,7 +22,7 @@ wget -O $HOME/$arqx ${REQUEST}/${arqx} > /dev/null 2>&1 && [[ -e $HOME/$arqx ]] 
 done
 fi
  rm $HOME/lista-arq
- echo "${dirb}/VPSBot.sh" > /usr/bin/VPSBot
+ echo "${dirb}/VPSBot.sh" > /usr/bin/VPSBot && chmod +x /usr/bin/VPSBot
 }
 
 veryfy_fun () {
@@ -52,7 +52,6 @@ mensaje () {
 
 sleep 5
 if [[ $1 = start ]]; then
-	killall VPSBot.sh &>/dev/null
 	mensaje updating
 	update
 	mensaje updated
