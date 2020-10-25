@@ -55,7 +55,8 @@ if [[ $1 = start ]]; then
 	mensaje updating
 	update
 	mensaje updated
-	screen -dmS VPSBot ${dirb}/VPSBot.sh
+	cd ${dirb}
+	screen -dmS VPSBot ./VPSBot.sh
 else
 	update
 fi
