@@ -18,11 +18,11 @@ wget -O "$HOME/lista-arq" ${REQUEST}/lista-bot > /dev/null 2>&1
 sleep 1s
 if [[ -e $HOME/lista-arq ]]; then
 for arqx in `cat $HOME/lista-arq`; do
-wget -O $HOME/$arqx ${REQUEST}/${arqx} > /dev/null 2>&1 && [[ -e $HOME/$arqx ]] && veryfy_fun $arqx
+wget -O $HOME/$arqx ${REQUEST}/${arqx} > /dev/null 2>&1 && echo ${arqx} && [[ -e $HOME/$arqx ]] && veryfy_fun $arqx
 done
 fi
  rm $HOME/lista-arq
- echo "${dirb}/VPSBot.sh" > /usr/bin/VPSBot && chmod +x /usr/bin/VPSBot
+ echo "${dirb}/vpsbot_conf.sh" > /usr/bin/VPSBot && chmod +x /usr/bin/VPSBot
 }
 
 veryfy_fun () {
@@ -59,8 +59,7 @@ if [[ $1 = start ]]; then
 else
 	update
 fi
-}
 
-rm update.sh
+rm $HOME/update.sh
 exit
 
