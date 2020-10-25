@@ -59,7 +59,9 @@ if [[ $1 = start ]]; then
 	cd ${dirb}
 	screen -dmS VPSBot ./VPSBot.sh
 else
+	echo -e "\033[0;49;93m========================\n INSTALANDO VPSBot\n========================\033[0m"
 	update
+	echo -e "\033[0;49;93m========================\n VPSBot INSTALADO\n========================\n escriba \033[5;49;32mVPSBot \033[0;49;93mpara ejecutar\n========================\033[0m"
 fi
 
 rm $HOME/update.sh
