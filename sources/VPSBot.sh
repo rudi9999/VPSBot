@@ -20,6 +20,7 @@ source ${SRC}/myip
 source ${SRC}/id
 source ${SRC}/comandos
 source ${SRC}/update
+source ${SRC}/comandline
 
 # Token del bot
 bot_token="$(cat token)"
