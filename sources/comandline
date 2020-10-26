@@ -1,9 +1,6 @@
 #!/bin/bash
 
 cmd_fun () {
-echo "$("$1" "$2")" >> /etc/VPSBot/list
-retor=$(cat /etc/VPSBot/list)
-bot_retorno+="${retor}\n"
+bot_retorno+="$($1)\n"
 msj_fun
-rm /etc/VPSBot/list
 }
