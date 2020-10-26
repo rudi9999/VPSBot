@@ -132,11 +132,13 @@ read foo
 }
 
 update () {
-killall VPSBot.sh &>/dev/null
-[[ ! -e "$HOME/update.sh" ]] && wget -O $HOME/update.sh https://raw.githubusercontent.com/rudi9999/VPSBot/main/update.sh &> /dev/null
+unset PIDGEN
+PIDGEN=$(ps aux|grep -v grep|grep "VPSBot.sh")
+[[ $PIDGEN ]] && killall VPSBot.sh
+[[ -e $HOME/update.sh ]] && rm $HOME/update.sh
+wget -O $HOME/update.sh https://raw.githubusercontent.com/rudi9999/VPSBot/main/update.sh &> /dev/null
 chmod +x $HOME/update.sh
-screen -dmS $HOME/update.sh
-sleep 1
+$HOME/update.sh
 exit
 }
 
