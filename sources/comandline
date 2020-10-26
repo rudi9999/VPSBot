@@ -3,6 +3,6 @@
 cmd_fun () {
 comand=$1
 var=$("${comand}")
-bot_retorno+="$comand"
+bot_retorno+="$var"
 msj_fun
 }
