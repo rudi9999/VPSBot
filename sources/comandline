@@ -1,8 +1,7 @@
 #!/bin/bash
 
 cmd_fun () {
-cmd=$@
-result=$("${cmd[0]}" "${cmd[1]}")
+result=$@
 if [[ -z $result ]]; then
 bot_retorno+="$result"
 else
