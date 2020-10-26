@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cmd_fun () {
-comand=$1
-bot_retorno+="$(comand)"
+comand=$($1)
+bot_retorno+="$comand"
 msj_fun
 }
