@@ -1,11 +1,6 @@
 #!/bin/bash
 
 cmd_fun () {
-result=$1
-if [[ -z $result ]]; then
-bot_retorno+="$result"
-else
-bot_retorno+="comando ejecutado"
-fi
+bot_retorno+="$1"
 msj_fun
 }
