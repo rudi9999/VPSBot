@@ -2,8 +2,6 @@
 
 cmd_fun () {
 comand=$1
-comand+=' '
-comand+=$2
-bot_retorno+="$($comand)\n"
+bot_retorno+="$(comand)"
 msj_fun
 }
