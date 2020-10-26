@@ -17,7 +17,7 @@ comand () {
 			 /[Rr]eboot)reboot_src &;;
 			 /[Cc]ache)cache_src &;;
 			 /[Uu]pdate|/[Aa]ctualizar)update &;;
-			 /[Cc]omando)cmd_fun "${comando[1]}" &;;
+			 /[Cc]md)cmd_fun "$@" &;;
 			 /*)invalido_fun &;;
 		 esac
 	    fi
