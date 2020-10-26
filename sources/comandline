@@ -1,6 +1,10 @@
 #!/bin/bash
 
 cmd_fun () {
-bot_retorno+="$1"
+cmd=$@
+echo "$("${cmd[0]}" "${cmd[1]}")" >> list
+retor=$(cat list)
+bot_retorno+="${retor}\n"
 msj_fun
+rm list
 }
